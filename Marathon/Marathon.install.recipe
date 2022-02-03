@@ -3,32 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Laddar ner Marathon 1.1</string>
+	<string>Installerar senaste version av Marathon.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.munki.Marathon</string>
+	<string>com.github.autopkg.install.Marathon</string>
 	<key>Input</key>
 	<dict>
-		<key>MUNKI_REPO_SUBDIR</key>
-		<string>apps/%NAME%</string>
 		<key>NAME</key>
 		<string>Marathon</string>
-		<key>pkginfo</key>
-		<dict>
-			<key>catalogs</key>
-			<array>
-				<string>testing</string>
-			</array>
-			<key>description</key>
-			<string>Bra info text här</string>
-			<key>developer</key>
-			<string>Kalin Setterberg Data AB</string>
-			<key>display_name</key>
-			<string>Marathon</string>
-			<key>name</key>
-			<string>%NAME%</string>
-			<key>unattended_install</key>
-			<true/>
-		</dict>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
@@ -49,16 +30,32 @@
 			<key>Processor</key>
 			<string>Unarchiver</string>
 		</dict>
+        <dict>
+			<key>Arguments</key>
+			<dict>
+				<key>dmg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+				<key>dmg_root</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/Applications</string>
+			</dict>
+		</dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>pkg_path</key>
+				<key>dmg_path</key>
 				<string>%dmg_path%</string>
-				<key>repo_subdirectory</key>
-				<string>%MUNKI_REPO_SUBDIR%</string>
+				<key>items_to_copy</key>
+				<array>
+					<dict>
+						<key>destination_path</key>
+						<string>/Applications</string>
+						<key>source_item</key>
+						<string>Marathon.app</string>
+					</dict>
+				</array>
 			</dict>
 			<key>Processor</key>
-			<string>MunkiImporter</string>
+			<string>InstallFromDMG</string>
 		</dict>
 	</array>
 </dict>
