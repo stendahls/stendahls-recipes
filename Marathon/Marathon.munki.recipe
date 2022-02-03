@@ -16,10 +16,10 @@
 		<dict>
 			<key>catalogs</key>
 			<array>
-				<string>testing</string>
+				<string>production</string>
 			</array>
 			<key>description</key>
-			<string>Bra info text här</string>
+			<string>Vi är specialiserade på att hjälpa reklam-, PR-, webb-, medie- och arkitektbyråer att sköta om och utveckla sin verksamhet. Vårt system Marathon utvecklas ständigt med nya funktioner och anpassning till ny teknik. Vi har hållit på med det här sedan 80-talet. Därför heter systemet Marathon.</string>
 			<key>developer</key>
 			<string>Kalin Setterberg Data AB</string>
 			<key>display_name</key>
