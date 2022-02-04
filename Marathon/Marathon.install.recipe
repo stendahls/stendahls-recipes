@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Installerar senaste version av Marathon.</string>
+	<string>Installerar Marathon 1.1</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.install.Marathon</string>
 	<key>Input</key>
