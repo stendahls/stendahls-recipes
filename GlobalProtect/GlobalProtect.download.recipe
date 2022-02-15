@@ -21,7 +21,7 @@
 				<key>filename</key>
 				<string>%NAME%.pkg</string>
 				<key>url</key>
-				<string>https://vpn.stendahls.se/global-protect/getmsi.esp?version=none&platform=mac</string>
+				<string>https://vpn.stendahls.se/global-protect/getmsi.esp?version=none&amp;platform=mac</string>
 			</dict>
 			<key>Processor</key>
 			<string>URLDownloader</string>
