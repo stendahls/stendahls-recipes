@@ -7,3 +7,4 @@ Recipes for Autopkg - https://github.com/autopkg
 ## Apps
 
 - [Marathon](https://kase.se/download.php)
+- [GlobalProtect](https://www.paloaltonetworks.com/products/globalprotect)
