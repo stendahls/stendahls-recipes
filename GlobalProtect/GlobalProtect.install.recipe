@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Installerar GlobalProtect</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.install.GlobalProtect</string>
+	<string>com.github.stendahls.install.GlobalProtect</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.download.GlobalProtect</string>
+	<string>com.github.stendahls.download.GlobalProtect</string>
 	<key>Process</key>
 	<array>
 		<dict>

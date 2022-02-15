@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Laddar ner GlobalProtect</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.munki.GlobalProtect</string>
+	<string>com.github.stendahls.munki.GlobalProtect</string>
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
@@ -33,7 +33,7 @@
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.download.GlobalProtect</string>
+	<string>com.github.stendahls.download.GlobalProtect</string>
 	<key>Process</key>
 	<array>
 		<dict>

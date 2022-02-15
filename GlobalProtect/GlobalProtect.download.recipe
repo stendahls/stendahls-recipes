@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Laddar ner GlobalProtect</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.download.GlobalProtect</string>
+	<string>com.github.stendahls.download.GlobalProtect</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
