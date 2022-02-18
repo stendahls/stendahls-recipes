@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Laddar ner GlobalProtect</string>
+	<string>Downloads the latest version of GlobalProtect and imports it into a munki_repo.</string>
 	<key>Identifier</key>
 	<string>com.github.stendahls.munki.GlobalProtect</string>
 	<key>Input</key>
 	<dict>
+		<key>MUNKI_CATEGORY</key>
+		<string>Admin tools</string>
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string>apps/%NAME%</string>
 		<key>NAME</key>
@@ -18,12 +20,16 @@
 			<array>
 				<string>production</string>
 			</array>
-			<key>description</key>
-			<string></string>
+			<key>category</key>
+			<string>%MUNKI_CATEGORY%</string>
 			<key>developer</key>
 			<string>Palo Alto Networks</string>
+			<key>description</key>
+			<string>GlobalProtect delivers the protection of next-generation security platform to the mobile workforce in order to stop targeted cyberattacks, evasive application traffic , phishing, malicious websites, command-and-control traffic, gel pack infections, and known and unknown threats.</string>
 			<key>display_name</key>
 			<string>GlobalProtect</string>
+			<key>minimum_os_version</key>
+			<string>10.11</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
@@ -39,11 +45,104 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>pkg_path</key>
-				<string>%RECIPE_CACHE_DIR%/downloads/%NAME%.pkg</string>
+				<key>flat_pkg_path</key>
+				<string>%pathname%/%NAME%.pkg</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/unpack</string>
 			</dict>
 			<key>Processor</key>
-			<string>Installer</string>
+			<string>FlatPkgUnpacker</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<key>pkg_payload_path</key>
+				<string>%RECIPE_CACHE_DIR%/unpack/gp.pkg/Payload</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgPayloadUnpacker</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>expected_authority_names</key>
+				<array/>
+				<key>input_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/Applications/%NAME%.app</string>
+				<key>requirement</key>
+				<string>identifier "com.paloaltonetworks.GlobalProtect.client" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = PXPZ95SK77</string>
+				<key>strict_verification</key>
+				<true/>
+			</dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>faux_root</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<key>installs_item_paths</key>
+				<array>
+					<string>/Applications/%NAME%.app</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiInstallsItemsCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>input_plist_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%/Applications/%NAME%.app/Contents/Info.plist</string>
+				<key>plist_version_key</key>
+				<string>CFBundleVersion</string>
+			</dict>
+			<key>Processor</key>
+			<string>Versioner</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict/>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>additional_pkginfo</key>
+				<dict>
+					<key>version</key>
+					<string>%version%</string>
+				</dict>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%pathname%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>path_list</key>
+				<array>
+					<string>%RECIPE_CACHE_DIR%/unpack</string>
+					<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
 		</dict>
 	</array>
 </dict>
